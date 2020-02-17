@@ -1,3 +1,5 @@
+// REQUIRES: opencl-interop
+
 // RUN: %clangxx -fsycl %s -o %t1.out -lOpenCL
 // RUN: %CPU_RUN_PLACEHOLDER %t1.out
 // RUN: %GPU_RUN_PLACEHOLDER %t1.out

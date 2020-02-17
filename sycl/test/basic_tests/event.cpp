@@ -1,3 +1,5 @@
+// REQUIRES: opencl-interop
+
 // RUN: %clangxx -fsycl %s -o %t.out -lOpenCL
 // RUN: env SYCL_DEVICE_TYPE=HOST %t.out
 //==--------------- event.cpp - SYCL event test ----------------------------==//

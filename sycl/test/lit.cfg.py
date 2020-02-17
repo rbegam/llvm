@@ -57,10 +57,17 @@ else:
 if 'OCL_ICD_FILENAMES' in os.environ:
     config.environment['OCL_ICD_FILENAMES'] = os.environ['OCL_ICD_FILENAMES']
 
+# INTEL_CUSTOMIZATION
+config.available_features.add('opencl-interop')
 if 'SYCL_BE' in os.environ:
     config.environment['SYCL_BE'] = os.environ['SYCL_BE']
+    # There is no direct OpenCL interop when not running OpenCL BE.
+    if config.environment['SYCL_BE'] == "PI_OTHER":
+        config.available_features.remove('opencl-interop')
+
 if 'SYCL_DEVICE_WHITE_LIST' in os.environ:
     config.environment['SYCL_DEVICE_WHITE_LIST'] = os.environ['SYCL_DEVICE_WHITE_LIST']
+# end INTEL_CUSTOMIZATION
 
 config.substitutions.append( ('%clang_cc1', ' ' + config.clang + ' -cc1 ') )
 # INTEL_CUSTOMIZATION
